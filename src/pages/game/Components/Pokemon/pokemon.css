@@ -2,12 +2,40 @@
   border-radius: 20px;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   padding-top: 5px;
-
+  cursor: pointer;
   color: white;
   background-color: rgb(101, 170, 160);
   text-transform: uppercase;
   text-align: center;
 }
+
+.bg-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.modal {
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  background-color: rgb(101, 170, 160);
+  width: 300px;
+}
+.modal-img {
+  cursor: pointer;
+  width: 200px;
+  height: 147px;
+}
+.action {
+  float: right;
+  margin-right: 10px;
+}
+
 body::-webkit-scrollbar {
   width: 10px;
 }

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Box, Button } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import axios from "axios";
 import "./index.css";
 
@@ -12,54 +12,79 @@ interface Pokemons {
   url: string;
 }
 
+export interface Detail {
+  id: number;
+  isOpened: boolean;
+}
+
 const Game: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [pokemons, setPokemon] = useState<pokemon[]>([]);
   const [nextUrl, setNextUrl] = useState<string>("");
-  useEffect(() => {
-    async function getPokemon() {
-      try {
-        const res = await axios.get(
-          "https://pokeapi.co/api/v2/pokemon?limit=20offset=20"
-        );
-        setNextUrl(res.data.next);
+  const [viewDetail, setDetail] = useState<Detail>({
+    id: 0,
+    isOpened: false,
+  });
 
-        res.data.results.forEach(async (pokemon: Pokemons) => {
-          const poke = await axios.get(
-            `https://pokeapi.co/api/v2/pokemon/${pokemon.name}          `
+  //load Pokemon
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      async function getPokemon() {
+        try {
+          const res = await axios.get(
+            "https://pokeapi.co/api/v2/pokemon?limit=20offset=20"
           );
-          setPokemon((p) => [...p, poke.data]);
-          setLoading(false);
-        });
-      } catch (error) {
-        console.error(error);
+          setNextUrl(res.data.next);
+          res.data.results.forEach(async (pokemon: Pokemons) => {
+            const poke = await axios.get(
+              `https://pokeapi.co/api/v2/pokemon/${pokemon.name}          `
+            );
+            setPokemon((p) => [...p, poke.data]);
+            setLoading(false);
+          });
+        } catch (error) {
+          console.error(error);
+        }
       }
-    }
-    getPokemon();
+      getPokemon();
+    }, 4000);
   }, []);
 
-  //Load more Pokemon
-  const nextPage = async () => {
+  // Load more Pokemon
+  const loadMore = async () => {
     setLoading(true);
-    let res = await axios.get(nextUrl);
-    setNextUrl(res.data.next);
-    res.data.results.forEach(async (pokemon: Pokemons) => {
-      const poke = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon/${pokemon.name}`
-      );
-      setPokemon((p) => [...p, poke.data]);
-      setLoading(false);
-    });
+    setTimeout(() => {
+      async function toggle() {
+        try {
+          let res = await axios.get(nextUrl);
+          setNextUrl(res.data.next);
+          res.data.results.forEach(async (pokemon: Pokemons) => {
+            const poke = await axios.get(
+              `https://pokeapi.co/api/v2/pokemon/${pokemon.name}`
+            );
+            setPokemon((p) => [...p, poke.data]);
+            setLoading(false);
+          });
+        } catch (error) {
+          console.error(error);
+        }
+      }
+      toggle();
+    }, 4000);
   };
+
   return (
     <Box>
-      <PokemonCollection pokemons={pokemons} />
+      <PokemonCollection
+        pokemons={pokemons}
+        viewDetail={viewDetail}
+        setDetail={setDetail}
+      />
       {loading ? (
-        <Button isLoading colorScheme="blue">
-          Click me
-        </Button>
+        <div className="spinner"></div>
       ) : (
-        <button className="btn-loadmore" onClick={nextPage}>
+        <button onClick={loadMore} className="btn-loadmore">
           Load More
         </button>
       )}
