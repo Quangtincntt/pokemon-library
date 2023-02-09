@@ -6,8 +6,7 @@ import "./index.css";
 // Pokemon
 import PokemonCollection from "./Components/Pokemon/PokemonCollection";
 import { pokemon } from "./../../interface";
-// Components
-import Header from "./Components/Header";
+
 interface Pokemons {
   name: string;
   url: string;
@@ -54,7 +53,6 @@ const Game: React.FC = () => {
   };
   return (
     <Box>
-      <Header />
       <PokemonCollection pokemons={pokemons} />
       {loading ? (
         <Button isLoading colorScheme="blue">

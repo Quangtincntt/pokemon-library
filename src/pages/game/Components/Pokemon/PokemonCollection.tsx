@@ -13,7 +13,7 @@ const PokemonCollection: React.FC<Props> = (props) => {
   return (
     <div className="wrapper">
       <p className="heading">Pokemon</p>
-      <SimpleGrid minChildWidth="150px" spacing="40px">
+      <SimpleGrid minChildWidth="150px" spacing="70px">
         {pokemons.map((poke, index) => {
           const { id, name, sprites } = poke;
           return (

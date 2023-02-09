@@ -1,7 +1,8 @@
 .pokemon-item {
   border-radius: 20px;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  padding: 5px;
+  padding-top: 5px;
+
   color: white;
   background-color: rgb(101, 170, 160);
   text-transform: uppercase;
@@ -23,10 +24,9 @@ body {
 
 .heading {
   font-style: italic;
-  font-weight: 300;
+  font-weight: 400;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   color: wheat;
-  font-size: 30px;
-  margin: 50px 0;
+  font-size: 40px;
   text-align: center;
 }
