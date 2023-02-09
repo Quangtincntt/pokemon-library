@@ -1,0 +1,15 @@
+.btn-loadmore {
+  cursor: pointer;
+  padding-bottom: 50px;
+  display: flex;
+  margin: auto;
+  border-radius: 20px;
+  padding: 10px;
+  border: none;
+  color: white;
+  background-color: rgb(128, 151, 148);
+}
+
+.btnloading {
+  
+}

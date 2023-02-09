@@ -1,0 +1,38 @@
+.header {
+  position: fixed;
+  width: 100%;
+  background-color: white;
+  justify-content: space-around;
+  box-shadow: 10px 10px 8px #d4cfcf;
+  display: flex;
+  margin-bottom: 30px;
+}
+.logo {
+  margin-top: 5px;
+  height: 50px;
+  width: 50px;
+}
+.avatar {
+  width: 50px;
+  height: 50px;
+}
+
+.user {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  margin-top: 20px;
+  font-size: 20px;
+}
+
+.avatar {
+  margin-top: 6px;
+}
+.btn-logout {
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  border: none;
+  background-color: #65aaa0;
+  margin-left: 10px;
+  transform: translateY(-20px);
+  padding: 8px;
+}
